@@ -1,0 +1,158 @@
+:root {
+  --pastel-pink: #ffd6e0;
+  --pastel-yellow: #fff3b0;
+  --pastel-green: #dcedc1;
+  --pastel-blue: #a8e6cf;
+  --pastel-purple: #e0bbe4;
+  --bg-color: #fdfcfb;
+  --text-dark: #4a4a4a;
+  --text-light: #7a7a7a;
+  --card-bg: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-color);
+  background-image: radial-gradient(var(--pastel-pink) 1px, transparent 1px),
+    radial-gradient(var(--pastel-pink) 1px, transparent 1px);
+  background-position: 0 0, 25px 25px;
+  background-size: 50px 50px;
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.btn-yes {
+  background-color: var(--pastel-blue);
+  color: #1a533b;
+}
+
+.btn-yes:hover {
+  background-color: #92dfc4;
+}
+
+.btn-no {
+  background-color: var(--pastel-pink);
+  color: #8c2842;
+}
+
+.btn-no:hover {
+  background-color: #ffc2d1;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Polaroids */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.polaroid {
+  background: white;
+  padding: 1rem 1rem 4rem 1rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  position: relative;
+  transition: transform 0.3s ease;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.polaroid img {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  max-height: 350px;
+  object-fit: contain;
+  background-color: #eee;
+  border-radius: 2px;
+}
+
+.polaroid .caption {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: var(--text-dark);
+}
+
+.polaroid:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.polaroid:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 10;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #5d4a66;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hide scrollbar for gallery if needed, but flex wrap is fine */
