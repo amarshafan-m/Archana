@@ -29,7 +29,7 @@ function ScreenQuestion1({ onYes }) {
       
       <h1>Are you my best friend, Arya? 🥺</h1>
       
-      <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem', position: 'relative', height: '100px', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '2rem', position: 'relative', minHeight: '100px', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
         <button className="btn-yes" onClick={onYes}>
           Yes! 💕
         </button>

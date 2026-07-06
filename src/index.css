@@ -73,10 +73,10 @@ button:active {
   background-color: #ffc2d1;
 }
 
-.app-container {
+.container {
   width: 100%;
   max-width: 1200px;
-  padding: 2rem;
+  padding: 2rem 1rem; /* Better mobile padding */
   padding-bottom: 4rem; /* Extra padding at bottom for Safari */
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@ button:active {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 3rem);
   margin-bottom: 2rem;
   text-align: center;
   color: #5d4a66;
