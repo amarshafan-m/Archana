@@ -5,14 +5,14 @@ function ScreenQuestion1({ onYes }) {
   const noButtonRef = useRef(null)
 
   const handleNoHover = () => {
-    // Generate random coordinates within a reasonable range
-    const randomX = Math.floor(Math.random() * 300) - 150 // -150px to 150px
-    const randomY = Math.floor(Math.random() * 300) - 150 // -150px to 150px
+    // Aggressive dodge: Move far away, ensuring it doesn't get stuck
+    const randomX = (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 150) + 100)
+    const randomY = (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 150) + 100)
 
     setNoButtonStyle({
       position: 'absolute',
       transform: `translate(${randomX}px, ${randomY}px)`,
-      transition: 'transform 0.2s ease-in-out'
+      transition: 'transform 0.15s cubic-bezier(0.25, 0.8, 0.25, 1)'
     })
   }
 

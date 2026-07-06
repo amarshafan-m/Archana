@@ -13,10 +13,19 @@ function App() {
   const [imagesLoaded, setImagesLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
 
-  // Preload images so they load instantly when the gallery opens
+  // Fast preload: Only block on the hero image so the site loads instantly.
+  // The gallery images will download in the background.
   useEffect(() => {
-    let loadedCount = 0
-    const imagesToPreload = [
+    const heroImg = new Image()
+    heroImg.onload = () => {
+      setLoadingProgress(100)
+      setTimeout(() => setImagesLoaded(true), 300)
+    }
+    heroImg.onerror = () => setImagesLoaded(true)
+    heroImg.src = '/photos/hero.jpg'
+
+    // Silently preload gallery in background
+    const galleryImages = [
       '/photos/photo1.JPG',
       '/photos/Photo 2.jpg',
       '/photos/photo3.JPG',
@@ -26,26 +35,10 @@ function App() {
       '/photos/photo7.jpg',
       '/photos/photo8.jpg',
       '/photos/photo9.jpg',
-      '/photos/photo10.jpg',
-      '/photos/hero.jpg'
+      '/photos/photo10.jpg'
     ]
-    
-    imagesToPreload.forEach(src => {
+    galleryImages.forEach(src => {
       const img = new Image()
-      img.onload = () => {
-        loadedCount++
-        setLoadingProgress(Math.round((loadedCount / imagesToPreload.length) * 100))
-        if(loadedCount === imagesToPreload.length) {
-          setTimeout(() => setImagesLoaded(true), 500) // slight delay for smooth transition
-        }
-      }
-      img.onerror = () => {
-        loadedCount++
-        setLoadingProgress(Math.round((loadedCount / imagesToPreload.length) * 100))
-        if(loadedCount === imagesToPreload.length) {
-          setImagesLoaded(true)
-        }
-      }
       img.src = src
     })
   }, [])
