@@ -44,10 +44,9 @@ function App() {
   // The gallery images will download in the background.
   useEffect(() => {
     let heroLoaded = false;
-    let audioLoaded = false;
     
     const checkLoaded = () => {
-      if (heroLoaded && audioLoaded) {
+      if (heroLoaded) {
         setLoadingProgress(100)
         setTimeout(() => setImagesLoaded(true), 300)
       }
@@ -58,12 +57,10 @@ function App() {
     heroImg.onerror = () => { heroLoaded = true; checkLoaded(); }
     heroImg.src = '/photos/hero.jpg'
 
-    const handleAudioLoaded = () => { audioLoaded = true; checkLoaded(); };
-    if (cutingAudio.readyState >= 4) {
-      handleAudioLoaded();
-    } else {
-      cutingAudio.addEventListener('canplaythrough', handleAudioLoaded, { once: true });
-      cutingAudio.addEventListener('error', handleAudioLoaded, { once: true });
+    // We still try to preload audio, but we don't block the UI for it
+    // because mobile browsers often block media preloading until a user interaction.
+    if (cutingAudio.readyState < 4) {
+      cutingAudio.load();
     }
 
     // Silently preload gallery in background
