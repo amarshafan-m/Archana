@@ -7,32 +7,73 @@ import ScreenCamera from './components/ScreenCamera'
 import ScreenWhatsApp from './components/ScreenWhatsApp'
 import FloatingParticles from './components/FloatingParticles'
 
+const cutingAudio = new Audio('/Cuting.mp3');
+cutingAudio.preload = 'auto';
+
+let playCount = 0;
+cutingAudio.addEventListener('ended', () => {
+  playCount++;
+  if (playCount < 3) {
+    cutingAudio.play().catch(e => console.log('Audio play failed', e));
+  }
+});
+
+const playCutingAudio = () => {
+  playCount = 0;
+  cutingAudio.currentTime = 0;
+  cutingAudio.play().catch(e => console.log('Audio play failed', e));
+};
+
 function App() {
   const [currentScreen, setCurrentScreen] = useState('question1')
   const [photoSrc, setPhotoSrc] = useState(null)
   const [imagesLoaded, setImagesLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
 
+  useEffect(() => {
+    const handleGlobalClick = (e) => {
+      if (e.target.tagName.toLowerCase() === 'button' || e.target.closest('button')) {
+        playCutingAudio();
+      }
+    };
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, []);
+
   // Fast preload: Only block on the hero image so the site loads instantly.
   // The gallery images will download in the background.
   useEffect(() => {
+    let heroLoaded = false;
+    let audioLoaded = false;
+    
+    const checkLoaded = () => {
+      if (heroLoaded && audioLoaded) {
+        setLoadingProgress(100)
+        setTimeout(() => setImagesLoaded(true), 300)
+      }
+    };
+
     const heroImg = new Image()
-    heroImg.onload = () => {
-      setLoadingProgress(100)
-      setTimeout(() => setImagesLoaded(true), 300)
-    }
-    heroImg.onerror = () => setImagesLoaded(true)
+    heroImg.onload = () => { heroLoaded = true; checkLoaded(); }
+    heroImg.onerror = () => { heroLoaded = true; checkLoaded(); }
     heroImg.src = '/photos/hero.jpg'
+
+    const handleAudioLoaded = () => { audioLoaded = true; checkLoaded(); };
+    if (cutingAudio.readyState >= 4) {
+      handleAudioLoaded();
+    } else {
+      cutingAudio.addEventListener('canplaythrough', handleAudioLoaded, { once: true });
+      cutingAudio.addEventListener('error', handleAudioLoaded, { once: true });
+    }
 
     // Silently preload gallery in background
     const galleryImages = [
-      '/photos/photo1.JPG',
-      '/photos/Photo 2.jpg',
-      '/photos/photo3.JPG',
+      '/photos/IMG_1974.JPG',
+      '/photos/IMG_1979.jpg',
+      '/photos/IMG_2009.jpg',
+      '/photos/IMG_2014.JPG',
+      '/photos/IMG_2072.PNG',
       '/photos/photo4.jpg',
-      '/photos/photo5.JPG',
-      '/photos/photo6.jpg',
-      '/photos/photo7.jpg',
       '/photos/photo8.jpg',
       '/photos/photo9.jpg',
       '/photos/photo10.jpg'

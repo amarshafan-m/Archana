@@ -3,13 +3,12 @@ import { motion } from 'framer-motion'
 
 function ScreenGallery({ onYes, onNo }) {
   const photos = [
-    { src: '/photos/photo1.JPG', alt: 'Cute moment 1', caption: 'Memories ✨' },
-    { src: '/photos/Photo 2.jpg', alt: 'Cute moment 2', caption: 'Us 💖' },
-    { src: '/photos/photo3.JPG', alt: 'Cute moment 3', caption: 'Smiles 😊' },
-    { src: '/photos/photo4.jpg', alt: 'Cute moment 4', caption: 'Adventures 🌟' },
-    { src: '/photos/photo5.JPG', alt: 'Cute moment 5', caption: 'Forever & Always 🎀' },
-    { src: '/photos/photo6.jpg', alt: 'Cute moment 6', caption: 'Love this! 📸' },
-    { src: '/photos/photo7.jpg', alt: 'Cute moment 7', caption: 'Happy days ☀️' },
+    { src: '/photos/IMG_1974.JPG', alt: 'Cute moment 1', caption: 'Memories ✨' },
+    { src: '/photos/IMG_1979.jpg', alt: 'Cute moment 2', caption: 'Us 💖' },
+    { src: '/photos/IMG_2009.jpg', alt: 'Cute moment 3', caption: 'Smiles 😊' },
+    { src: '/photos/IMG_2014.JPG', alt: 'Cute moment 4', caption: 'Adventures 🌟' },
+    { src: '/photos/IMG_2072.PNG', alt: 'Cute moment 5', caption: 'Forever & Always 🎀' },
+    { src: '/photos/photo4.jpg', alt: 'Cute moment 6', caption: 'Love this! 📸' },
     { src: '/photos/photo8.jpg', alt: 'Cute moment 8', caption: 'Together 💞' },
     { src: '/photos/photo9.jpg', alt: 'Cute moment 9', caption: 'Perfect moment ✨' },
     { src: '/photos/photo10.jpg', alt: 'Cute moment 10', caption: 'Always 🥰' },
@@ -58,7 +57,7 @@ function ScreenGallery({ onYes, onNo }) {
       </motion.div>
 
       <div style={{ marginTop: '2rem', padding: '2rem', background: 'rgba(255,255,255,0.5)', borderRadius: '20px', backdropFilter: 'blur(5px)' }}>
-        <h2 style={{ marginBottom: '1.5rem', color: '#5d4a66' }}>Did I make you happy, Arya? 🥰</h2>
+        <h2 style={{ marginBottom: '1.5rem', color: '#5d4a66' }}>Did I make you happy, Archana? 🥰</h2>
         <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
           <button className="btn-yes" onClick={onYes}>Yes, so much! ✨</button>
           <button className="btn-no" onClick={onNo}>No 😔</button>

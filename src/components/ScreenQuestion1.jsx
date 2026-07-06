@@ -24,10 +24,10 @@ function ScreenQuestion1({ onYes }) {
           alt="Us" 
           onError={(e) => { e.target.src = 'https://via.placeholder.com/250/ffd6e0/5d4a66?text=Save+image+as+hero.jpg' }}
         />
-        <div className="caption">Hey Arya! 👋</div>
+        <div className="caption">Hey Archana! 👋</div>
       </div>
       
-      <h1>Are you my best friend, Arya? 🥺</h1>
+      <h1>Are you my best friend, Archana? 🥺</h1>
       
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '2rem', position: 'relative', minHeight: '100px', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
         <button className="btn-yes" onClick={onYes}>
