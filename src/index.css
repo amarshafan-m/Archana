@@ -40,7 +40,7 @@ button {
   padding: 12px 28px;
   font-size: 1.1rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -102,7 +102,6 @@ button:active {
   width: 250px;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
 }
 
 .polaroid img {
@@ -140,15 +139,11 @@ button:active {
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 3rem;
   margin-bottom: 2rem;
   text-align: center;
   color: #5d4a66;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-h2 {
-  font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .fade-in {
@@ -160,65 +155,4 @@ h2 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Advanced Mobile Polish */
-@media (max-width: 768px) {
-  .app-container, .container {
-    padding: 1rem;
-    overflow-x: hidden;
-  }
-
-  /* Horizontal swipeable gallery for mobile */
-  .gallery {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 1rem;
-    padding: 1rem;
-    margin-left: -1rem; /* Negative margins to let it bleed to edges */
-    margin-right: -1rem;
-    -webkit-overflow-scrolling: touch;
-    gap: 1.5rem;
-  }
-
-  .gallery::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for a clean app feel */
-  }
-
-  .polaroid {
-    scroll-snap-align: center;
-    width: 280px;
-    padding: 15px 15px 30px 15px; /* Thinner padding to maximize photo size on mobile */
-  }
-  
-  /* Make all polaroids stand straight in the horizontal slider to prevent clipping */
-  .polaroid:nth-child(even), .polaroid:nth-child(odd) {
-    transform: rotate(0deg); 
-  }
-  
-  .polaroid:hover {
-    transform: scale(1) !important; /* Disable hover scale on touch devices */
-  }
-
-  .polaroid img {
-    height: 350px;
-    object-fit: cover;
-  }
-
-  /* Touch-friendly full-width buttons */
-  .btn-yes, .btn-no {
-    width: 100%;
-    padding: 16px;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .container > div > div > div {
-     /* Target the button container for column layout on very small screens */
-     flex-direction: column !important;
-     width: 100%;
-  }
-}
+/* Hide scrollbar for gallery if needed, but flex wrap is fine */
