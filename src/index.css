@@ -102,6 +102,7 @@ button:active {
   width: 250px;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
 .polaroid img {
@@ -139,11 +140,15 @@ button:active {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 2rem;
   text-align: center;
   color: #5d4a66;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .fade-in {
@@ -155,44 +160,65 @@ h1 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hide scrollbar for gallery if needed, but flex wrap is fine */
-
-/* Mobile Polish */
+/* Advanced Mobile Polish */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2rem !important; /* Slightly smaller headers */
-    margin-bottom: 1rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem !important;
+  .app-container, .container {
+    padding: 1rem;
+    overflow-x: hidden;
   }
 
-  .container {
-    padding: 10px;
-    margin: 10px;
-  }
-
-  /* Make polaroids fit perfectly on small screens */
-  .polaroid {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px 10px 30px 10px;
-  }
-  
-  .polaroid img {
-    height: 300px; /* Slightly taller for portrait faces */
-  }
-
-  /* Stack buttons on tiny screens if they don't fit */
-  .btn-yes, .btn-no {
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    min-width: 120px;
-  }
-  
-  /* Make gallery gap smaller so it scrolls nicer on phones */
+  /* Horizontal swipeable gallery for mobile */
   .gallery {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 1rem;
+    padding: 1rem;
+    margin-left: -1rem; /* Negative margins to let it bleed to edges */
+    margin-right: -1rem;
+    -webkit-overflow-scrolling: touch;
     gap: 1.5rem;
+  }
+
+  .gallery::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for a clean app feel */
+  }
+
+  .polaroid {
+    scroll-snap-align: center;
+    width: 280px;
+    padding: 15px 15px 30px 15px; /* Thinner padding to maximize photo size on mobile */
+  }
+  
+  /* Make all polaroids stand straight in the horizontal slider to prevent clipping */
+  .polaroid:nth-child(even), .polaroid:nth-child(odd) {
+    transform: rotate(0deg); 
+  }
+  
+  .polaroid:hover {
+    transform: scale(1) !important; /* Disable hover scale on touch devices */
+  }
+
+  .polaroid img {
+    height: 350px;
+    object-fit: cover;
+  }
+
+  /* Touch-friendly full-width buttons */
+  .btn-yes, .btn-no {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container > div > div > div {
+     /* Target the button container for column layout on very small screens */
+     flex-direction: column !important;
+     width: 100%;
   }
 }
