@@ -53,7 +53,6 @@ function ScreenGallery({ onYes, onNo }) {
               style={{ objectPosition: 'center 20%' }}
               onError={(e) => { e.target.src = 'https://via.placeholder.com/250/ffd6e0/5d4a66?text=Your+Photo+Here' }}
             />
-            <div className="caption">{photo.caption}</div>
           </motion.div>
         ))}
       </motion.div>
