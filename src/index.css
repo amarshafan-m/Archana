@@ -24,7 +24,9 @@ body {
   background-position: 0 0, 25px 25px;
   background-size: 50px 50px;
   color: var(--text-dark);
-  min-height: 100vh;
+  min-height: 100dvh; /* Use dynamic viewport height for Safari */
+  /* Fallback for older browsers */
+  min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,11 +77,12 @@ button:active {
   width: 100%;
   max-width: 1200px;
   padding: 2rem;
+  padding-bottom: 4rem; /* Extra padding at bottom for Safari */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* Polaroids */
