@@ -40,7 +40,7 @@ button {
   padding: 12px 28px;
   font-size: 1.1rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -156,3 +156,43 @@ h1 {
 }
 
 /* Hide scrollbar for gallery if needed, but flex wrap is fine */
+
+/* Mobile Polish */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem !important; /* Slightly smaller headers */
+    margin-bottom: 1rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .container {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  /* Make polaroids fit perfectly on small screens */
+  .polaroid {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 10px 30px 10px;
+  }
+  
+  .polaroid img {
+    height: 300px; /* Slightly taller for portrait faces */
+  }
+
+  /* Stack buttons on tiny screens if they don't fit */
+  .btn-yes, .btn-no {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    min-width: 120px;
+  }
+  
+  /* Make gallery gap smaller so it scrolls nicer on phones */
+  .gallery {
+    gap: 1.5rem;
+  }
+}
